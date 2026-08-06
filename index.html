@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title data-ru="AgentLocal — AI-агенты для локального бизнеса" data-en="AgentLocal — AI Agents for Local Business">AgentLocal — AI-агенты для локального бизнеса</title>
+<meta name="description" data-ru="AgentLocal принимает звонки и сообщения, записывает клиентов и не теряет ни одной заявки — 24/7." data-en="AgentLocal answers calls and messages, books appointments and never misses a lead — 24/7." content="AgentLocal принимает звонки и сообщения, записывает клиентов и не теряет ни одной заявки — 24/7.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>◆</text></svg>">
+</head>
+<body>
+
+<!-- ═══════════ HEADER ═══════════ -->
+<header class="header" id="header">
+  <div class="container header__inner">
+    <a href="#" class="logo">
+      <span class="logo__mark" aria-hidden="true"></span>
+      <span class="logo__text">Agent<span>Local</span></span>
+    </a>
+
+    <nav class="nav" id="nav">
+      <a href="#solutions" data-ru="Решения" data-en="Solutions">Решения</a>
+      <a href="#features" data-ru="Возможности" data-en="Features">Возможности</a>
+      <a href="#how" data-ru="Как работает" data-en="How it works">Как работает</a>
+      <a href="#pricing" data-ru="Тарифы" data-en="Pricing">Тарифы</a>
+      <a href="#contact" data-ru="Контакты" data-en="Contact">Контакты</a>
+    </nav>
+
+    <div class="header__actions">
+      <div class="lang" role="group" aria-label="Language">
+        <button class="lang__btn is-active" data-lang="ru">RU</button>
+        <button class="lang__btn" data-lang="en">EN</button>
+      </div>
+      <a href="#contact" class="btn btn--primary btn--sm" data-ru="Получить демо" data-en="Get Demo">Получить демо</a>
+      <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- ═══════════ HERO ═══════════ -->
+<section class="hero">
+  <div class="hero__glow" aria-hidden="true"></div>
+  <div class="container hero__inner">
+    <div class="hero__copy">
+      <div class="badge reveal">
+        <span class="badge__dot"></span>
+        <span data-ru="AI-агенты для локального бизнеса" data-en="AI agents for local business">AI-агенты для локального бизнеса</span>
+      </div>
+
+      <h1 class="hero__title reveal" data-ru="Агенты, которые отвечают клиентам за вас" data-en="Agents that answer your customers for you">Агенты, которые отвечают клиентам за вас</h1>
+
+      <p class="hero__sub reveal" data-ru="AgentLocal подключается к вашему телефону, WhatsApp и Telegram: принимает заявки, записывает клиентов и не пропускает ни одного обращения — круглосуточно." data-en="AgentLocal connects to your phone, WhatsApp and Telegram: takes requests, books appointments and never misses a single lead — around the clock.">AgentLocal подключается к вашему телефону, WhatsApp и Telegram: принимает заявки, записывает клиентов и не пропускает ни одного обращения — круглосуточно.</p>
+
+      <div class="hero__cta reveal">
+        <a href="#contact" class="btn btn--primary btn--lg" data-ru="Получить демо" data-en="Get Demo">Получить демо</a>
+        <a href="#how" class="btn btn--ghost btn--lg" data-ru="Как это работает" data-en="How it works">Как это работает</a>
+      </div>
+
+      <dl class="hero__stats reveal">
+        <div><dt>24/7</dt><dd data-ru="на связи" data-en="always on">на связи</dd></div>
+        <div><dt>3 <span data-ru="сек" data-en="sec">сек</span></dt><dd data-ru="средний ответ" data-en="avg. reply">средний ответ</dd></div>
+        <div><dt>+37%</dt><dd data-ru="записей клиентов" data-en="more bookings">записей клиентов</dd></div>
+        <div><dt>5 <span data-ru="мин" data-en="min">мин</span></dt><dd data-ru="на подключение" data-en="to set up">на подключение</dd></div>
+      </dl>
+    </div>
+
+    <!-- Chat mock -->
+    <div class="hero__visual reveal">
+      <div class="chat">
+        <div class="chat__head">
+          <span class="chat__avatar" aria-hidden="true"></span>
+          <div>
+            <strong data-ru="Агент «Аня»" data-en="Agent “Anna”">Агент «Аня»</strong>
+            <small><i class="dot"></i><span data-ru="онлайн · отвечает сразу" data-en="online · replies instantly">онлайн · отвечает сразу</span></small>
+          </div>
+          <span class="chat__tag">WhatsApp</span>
+        </div>
+        <div class="chat__body">
+          <div class="msg msg--in" data-ru="Здравствуйте! Есть окно на стрижку сегодня вечером?" data-en="Hi! Any slot for a haircut tonight?">Здравствуйте! Есть окно на стрижку сегодня вечером?</div>
+          <div class="msg msg--out" data-ru="Здравствуйте! Да — 18:30 и 20:00 у мастера Игоря. Какое удобнее?" data-en="Hi! Yes — 6:30 PM and 8:00 PM with Igor. Which works better?">Здравствуйте! Да — 18:30 и 20:00 у мастера Игоря. Какое удобнее?</div>
+          <div class="msg msg--in" data-ru="Давайте 18:30" data-en="Let’s do 6:30 PM">Давайте 18:30</div>
+          <div class="msg msg--out" data-ru="Записала ✅ Напомню за час до визита." data-en="Booked ✅ I’ll remind you an hour before.">Записала ✅ Напомню за час до визита.</div>
+          <div class="msg msg--typing"><span></span><span></span><span></span></div>
+        </div>
+        <div class="chat__foot">
+          <span class="pill" data-ru="Запись создана" data-en="Booking created">Запись создана</span>
+          <span class="pill pill--muted" data-ru="CRM обновлена" data-en="CRM updated">CRM обновлена</span>
+        </div>
+      </div>
+      <div class="float-card float-card--1">
+        <strong>0</strong>
+        <span data-ru="пропущенных звонков" data-en="missed calls">пропущенных звонков</span>
+      </div>
+      <div class="float-card float-card--2">
+        <strong>128</strong>
+        <span data-ru="диалогов за неделю" data-en="chats this week">диалогов за неделю</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ LOGOS ═══════════ -->
+<section class="logos">
+  <div class="container">
+    <p class="logos__title" data-ru="Нам доверяют более 400 локальных компаний" data-en="Trusted by 400+ local businesses">Нам доверяют более 400 локальных компаний</p>
+  </div>
+  <div class="marquee marquee--logos">
+    <div class="marquee__track">
+      <span>BellaNails</span><span>AutoPro</span><span>DentaLab</span><span>Coffee Point</span><span>FitZone</span><span>MediCare</span><span>Barber 22</span><span>Уют Clinic</span>
+      <span>BellaNails</span><span>AutoPro</span><span>DentaLab</span><span>Coffee Point</span><span>FitZone</span><span>MediCare</span><span>Barber 22</span><span>Уют Clinic</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ PROBLEM ═══════════ -->
+<section class="statement">
+  <div class="container statement__inner reveal">
+    <span class="eyebrow"><i>✶</i><span data-ru="Умная автоматизация" data-en="Smart automation">Умная автоматизация</span></span>
+    <p class="statement__text">
+      <span data-ru="Ваш бизнес теряет клиентов, пока вы заняты. Пропущенный звонок в час пик, сообщение ночью без ответа, забытая запись — каждый такой случай уходит к конкуренту." data-en="Your business loses customers while you’re busy. A missed call at rush hour, an unanswered message at night, a forgotten booking — each one goes to a competitor.">Ваш бизнес теряет клиентов, пока вы заняты. Пропущенный звонок в час пик, сообщение ночью без ответа, забытая запись — каждый такой случай уходит к конкуренту.</span>
+      <b data-ru="Поэтому мы сделали AgentLocal." data-en="That’s why we built AgentLocal.">Поэтому мы сделали AgentLocal.</b>
+    </p>
+  </div>
+</section>
+
+<!-- ═══════════ SOLUTIONS ═══════════ -->
+<section class="section" id="solutions">
+  <div class="container">
+    <div class="section__head reveal">
+      <span class="eyebrow"><i>✶</i><span data-ru="Решения" data-en="Solutions">Решения</span></span>
+      <h2 data-ru="Один агент — вся рутина вашего бизнеса" data-en="One agent — all the routine of your business">Один агент — вся рутина вашего бизнеса</h2>
+      <p data-ru="Настроен под вашу нишу и работает с первого дня" data-en="Tuned to your niche and working from day one">Настроен под вашу нишу и работает с первого дня</p>
+    </div>
+
+    <div class="grid grid--4">
+      <article class="card card--solution reveal">
+        <div class="card__icon">💇</div>
+        <h3 data-ru="Салоны и барбершопы" data-en="Salons &amp; barbershops">Салоны и барбершопы</h3>
+        <p data-ru="Запись, перенос и напоминания без администратора на телефоне." data-en="Booking, rescheduling and reminders without a receptionist on the phone.">Запись, перенос и напоминания без администратора на телефоне.</p>
+        <span class="card__metric">✓ <span data-ru="−60% пропущенных записей" data-en="−60% missed bookings">−60% пропущенных записей</span></span>
+      </article>
+
+      <article class="card card--solution reveal">
+        <div class="card__icon">☕</div>
+        <h3 data-ru="Кафе и рестораны" data-en="Cafés &amp; restaurants">Кафе и рестораны</h3>
+        <p data-ru="Бронь столиков, заказы навынос и ответы на вопросы гостей." data-en="Table reservations, takeaway orders and guest questions answered.">Бронь столиков, заказы навынос и ответы на вопросы гостей.</p>
+        <span class="card__metric">✓ <span data-ru="3× быстрее обработка брони" data-en="3× faster reservations">3× быстрее обработка брони</span></span>
+      </article>
+
+      <article class="card card--solution reveal">
+        <div class="card__icon">🔧</div>
+        <h3 data-ru="Автосервисы" data-en="Auto services">Автосервисы</h3>
+        <p data-ru="Предварительный расчёт, запись на сервис и статус ремонта." data-en="Quick quotes, service booking and repair status updates.">Предварительный расчёт, запись на сервис и статус ремонта.</p>
+        <span class="card__metric">✓ <span data-ru="+37% заявок" data-en="+37% more leads">+37% заявок</span></span>
+      </article>
+
+      <article class="card card--solution reveal">
+        <div class="card__icon">🦷</div>
+        <h3 data-ru="Клиники и стоматологии" data-en="Clinics &amp; dentists">Клиники и стоматологии</h3>
+        <p data-ru="Первичный вопрос, подбор врача, запись и напоминание о визите." data-en="First questions, doctor matching, booking and visit reminders.">Первичный вопрос, подбор врача, запись и напоминание о визите.</p>
+        <span class="card__metric">✓ <span data-ru="Приём обращений 24/7" data-en="24/7 intake">Приём обращений 24/7</span></span>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ FEATURES ═══════════ -->
+<section class="section section--alt" id="features">
+  <div class="container">
+    <div class="section__head reveal">
+      <span class="eyebrow"><i>✶</i><span data-ru="Возможности" data-en="Features">Возможности</span></span>
+      <h2 data-ru="Работает как ваш лучший администратор" data-en="Works like your best receptionist">Работает как ваш лучший администратор</h2>
+    </div>
+
+    <div class="features">
+      <article class="feature feature--wide reveal">
+        <div class="feature__text">
+          <h3 data-ru="Все каналы в одном окне" data-en="Every channel in one inbox">Все каналы в одном окне</h3>
+          <p data-ru="Звонки, WhatsApp, Telegram, Instagram и виджет на сайте. Агент отвечает везде, история клиента — в одной карточке." data-en="Calls, WhatsApp, Telegram, Instagram and the website widget. The agent replies everywhere, the customer history stays in one card.">Звонки, WhatsApp, Telegram, Instagram и виджет на сайте. Агент отвечает везде, история клиента — в одной карточке.</p>
+        </div>
+        <div class="feature__vis channels">
+          <span class="ch">📞</span><span class="ch">💬</span><span class="ch">✈️</span><span class="ch">📷</span><span class="ch">🌐</span>
+          <span class="ch ch--core">◆</span>
+        </div>
+      </article>
+
+      <article class="feature reveal">
+        <div class="feature__vis brain">
+          <div class="brain__pulse"></div>
+          <span data-ru="Знает ваш прайс, услуги и расписание" data-en="Knows your prices, services and schedule">Знает ваш прайс, услуги и расписание</span>
+        </div>
+        <div class="feature__text">
+          <h3 data-ru="Понимает контекст" data-en="Understands context">Понимает контекст</h3>
+          <p data-ru="Загрузите прайс и правила — агент отвечает по вашим данным, а не выдумывает." data-en="Upload your price list and rules — the agent answers from your data, never invents.">Загрузите прайс и правила — агент отвечает по вашим данным, а не выдумывает.</p>
+        </div>
+      </article>
+
+      <article class="feature reveal">
+        <div class="feature__vis calendar">
+          <div class="cal-row"><span data-ru="Пн 18:30" data-en="Mon 6:30 PM">Пн 18:30</span><b>✓</b></div>
+          <div class="cal-row"><span data-ru="Вт 11:00" data-en="Tue 11:00 AM">Вт 11:00</span><b>✓</b></div>
+          <div class="cal-row is-new"><span data-ru="Ср 15:45" data-en="Wed 3:45 PM">Ср 15:45</span><b>✓</b></div>
+        </div>
+        <div class="feature__text">
+          <h3 data-ru="Записывает в календарь" data-en="Books into your calendar">Записывает в календарь</h3>
+          <p data-ru="Находит свободный слот, создаёт запись и присылает напоминание клиенту." data-en="Finds a free slot, creates the booking and sends the reminder to the client.">Находит свободный слот, создаёт запись и присылает напоминание клиенту.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+
+  <div class="marquee marquee--tags">
+    <div class="marquee__track">
+      <span class="tag"><i>✶</i><span data-ru="Приём звонков" data-en="Call answering">Приём звонков</span></span>
+      <span class="tag"><i>✶</i>WhatsApp</span>
+      <span class="tag"><i>✶</i>Telegram</span>
+      <span class="tag"><i>✶</i><span data-ru="Онлайн-запись" data-en="Online booking">Онлайн-запись</span></span>
+      <span class="tag"><i>✶</i><span data-ru="Напоминания" data-en="Reminders">Напоминания</span></span>
+      <span class="tag"><i>✶</i><span data-ru="Интеграция с CRM" data-en="CRM integration">Интеграция с CRM</span></span>
+      <span class="tag"><i>✶</i><span data-ru="Аналитика" data-en="Analytics">Аналитика</span></span>
+      <span class="tag"><i>✶</i><span data-ru="Приём звонков" data-en="Call answering">Приём звонков</span></span>
+      <span class="tag"><i>✶</i>WhatsApp</span>
+      <span class="tag"><i>✶</i>Telegram</span>
+      <span class="tag"><i>✶</i><span data-ru="Онлайн-запись" data-en="Online booking">Онлайн-запись</span></span>
+      <span class="tag"><i>✶</i><span data-ru="Напоминания" data-en="Reminders">Напоминания</span></span>
+      <span class="tag"><i>✶</i><span data-ru="Интеграция с CRM" data-en="CRM integration">Интеграция с CRM</span></span>
+      <span class="tag"><i>✶</i><span data-ru="Аналитика" data-en="Analytics">Аналитика</span></span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ HOW IT WORKS ═══════════ -->
+<section class="section" id="how">
+  <div class="container">
+    <div class="section__head reveal">
+      <span class="eyebrow"><i>✶</i><span data-ru="Запуск" data-en="Getting started">Запуск</span></span>
+      <h2 data-ru="Три шага до первого клиента" data-en="Three steps to your first customer">Три шага до первого клиента</h2>
+    </div>
+
+    <ol class="steps">
+      <li class="step reveal">
+        <span class="step__num">01</span>
+        <h3 data-ru="Подключаем каналы" data-en="Connect your channels">Подключаем каналы</h3>
+        <p data-ru="Номер телефона, WhatsApp и Telegram — за 5 минут, без разработчика." data-en="Phone number, WhatsApp and Telegram — in 5 minutes, no developer needed.">Номер телефона, WhatsApp и Telegram — за 5 минут, без разработчика.</p>
+      </li>
+      <li class="step reveal">
+        <span class="step__num">02</span>
+        <h3 data-ru="Обучаем агента" data-en="Train the agent">Обучаем агента</h3>
+        <p data-ru="Загружаете прайс, услуги и расписание — агент собирает базу знаний сам." data-en="Upload prices, services and schedule — the agent builds its knowledge base itself.">Загружаете прайс, услуги и расписание — агент собирает базу знаний сам.</p>
+      </li>
+      <li class="step reveal">
+        <span class="step__num">03</span>
+        <h3 data-ru="Включаете и смотрите отчёты" data-en="Go live and watch reports">Включаете и смотрите отчёты</h3>
+        <p data-ru="Агент работает круглосуточно, вы получаете сводку по заявкам и записям." data-en="The agent works around the clock, you get a digest of leads and bookings.">Агент работает круглосуточно, вы получаете сводку по заявкам и записям.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ═══════════ PRICING ═══════════ -->
+<section class="section section--alt" id="pricing">
+  <div class="container">
+    <div class="section__head reveal">
+      <span class="eyebrow"><i>✶</i><span data-ru="Тарифы" data-en="Pricing">Тарифы</span></span>
+      <h2 data-ru="Прозрачная цена, без скрытых платежей" data-en="Transparent pricing, no hidden fees">Прозрачная цена, без скрытых платежей</h2>
+      <p data-ru="Первые 14 дней — бесплатно. Отключиться можно в любой момент." data-en="First 14 days free. Cancel anytime.">Первые 14 дней — бесплатно. Отключиться можно в любой момент.</p>
+    </div>
+
+    <div class="grid grid--3">
+      <article class="plan reveal">
+        <h3 data-ru="Старт" data-en="Start">Старт</h3>
+        <p class="plan__desc" data-ru="Для одной точки" data-en="For a single location">Для одной точки</p>
+        <div class="plan__price"><b data-ru="4 900 ₽" data-en="$59">4 900 ₽</b><span data-ru="/ мес" data-en="/ mo">/ мес</span></div>
+        <ul class="plan__list">
+          <li data-ru="1 канал на выбор" data-en="1 channel of your choice">1 канал на выбор</li>
+          <li data-ru="До 300 диалогов в месяц" data-en="Up to 300 chats per month">До 300 диалогов в месяц</li>
+          <li data-ru="База знаний по прайсу" data-en="Knowledge base from your price list">База знаний по прайсу</li>
+          <li data-ru="Запись в календарь" data-en="Calendar booking">Запись в календарь</li>
+          <li data-ru="Поддержка по почте" data-en="Email support">Поддержка по почте</li>
+        </ul>
+        <a href="#contact" class="btn btn--ghost btn--block" data-ru="Попробовать" data-en="Try it">Попробовать</a>
+      </article>
+
+      <article class="plan plan--featured reveal">
+        <span class="plan__badge" data-ru="Популярный" data-en="Most popular">Популярный</span>
+        <h3 data-ru="Бизнес" data-en="Business">Бизнес</h3>
+        <p class="plan__desc" data-ru="Для растущей компании" data-en="For a growing company">Для растущей компании</p>
+        <div class="plan__price"><b data-ru="12 900 ₽" data-en="$149">12 900 ₽</b><span data-ru="/ мес" data-en="/ mo">/ мес</span></div>
+        <ul class="plan__list">
+          <li data-ru="Все каналы, включая звонки" data-en="All channels, calls included">Все каналы, включая звонки</li>
+          <li data-ru="До 2 000 диалогов в месяц" data-en="Up to 2,000 chats per month">До 2 000 диалогов в месяц</li>
+          <li data-ru="Интеграция с CRM и календарём" data-en="CRM and calendar integration">Интеграция с CRM и календарём</li>
+          <li data-ru="Напоминания и допродажи" data-en="Reminders and upsells">Напоминания и допродажи</li>
+          <li data-ru="Аналитика и отчёты" data-en="Analytics and reports">Аналитика и отчёты</li>
+          <li data-ru="Приоритетная поддержка" data-en="Priority support">Приоритетная поддержка</li>
+        </ul>
+        <a href="#contact" class="btn btn--primary btn--block" data-ru="Получить демо" data-en="Get Demo">Получить демо</a>
+      </article>
+
+      <article class="plan reveal">
+        <h3 data-ru="Сеть" data-en="Network">Сеть</h3>
+        <p class="plan__desc" data-ru="Для нескольких филиалов" data-en="For multiple locations">Для нескольких филиалов</p>
+        <div class="plan__price"><b data-ru="Индивидуально" data-en="Custom">Индивидуально</b></div>
+        <ul class="plan__list">
+          <li data-ru="Без ограничений по диалогам" data-en="Unlimited chats">Без ограничений по диалогам</li>
+          <li data-ru="Несколько точек и команд" data-en="Multiple locations and teams">Несколько точек и команд</li>
+          <li data-ru="Свой голос и стиль общения" data-en="Custom voice and tone">Свой голос и стиль общения</li>
+          <li data-ru="Интеграции под ваши системы" data-en="Custom integrations">Интеграции под ваши системы</li>
+          <li data-ru="Персональный менеджер и SLA" data-en="Dedicated manager and SLA">Персональный менеджер и SLA</li>
+        </ul>
+        <a href="#contact" class="btn btn--ghost btn--block" data-ru="Обсудить" data-en="Talk to us">Обсудить</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ CTA / CONTACT ═══════════ -->
+<section class="cta" id="contact">
+  <div class="container">
+    <div class="cta__card reveal">
+      <div>
+        <h2 data-ru="Покажем агента на ваших задачах" data-en="See the agent on your own cases">Покажем агента на ваших задачах</h2>
+        <p data-ru="Оставьте почту — свяжемся в течение рабочего дня и настроим демо под вашу нишу." data-en="Leave your email — we’ll get back within one business day and set up a demo for your niche.">Оставьте почту — свяжемся в течение рабочего дня и настроим демо под вашу нишу.</p>
+      </div>
+      <form class="cta__form" id="demo-form" novalidate>
+        <input type="email" id="demo-email" required
+               data-ru-ph="Ваш e-mail" data-en-ph="Your email" placeholder="Ваш e-mail" aria-label="E-mail">
+        <button type="submit" class="btn btn--primary" data-ru="Записаться на демо" data-en="Book a demo">Записаться на демо</button>
+        <p class="cta__note" id="form-note" role="status"></p>
+      </form>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ═══════════ FOOTER ═══════════ -->
+<footer class="footer">
+  <div class="container footer__inner">
+    <div class="footer__brand">
+      <a href="#" class="logo">
+        <span class="logo__mark" aria-hidden="true"></span>
+        <span class="logo__text">Agent<span>Local</span></span>
+      </a>
+      <p data-ru="AI-агенты, которые берут на себя общение с клиентами локального бизнеса." data-en="AI agents that take over customer communication for local businesses.">AI-агенты, которые берут на себя общение с клиентами локального бизнеса.</p>
+    </div>
+
+    <nav class="footer__col">
+      <h4 data-ru="Продукт" data-en="Product">Продукт</h4>
+      <a href="#solutions" data-ru="Решения" data-en="Solutions">Решения</a>
+      <a href="#features" data-ru="Возможности" data-en="Features">Возможности</a>
+      <a href="#pricing" data-ru="Тарифы" data-en="Pricing">Тарифы</a>
+      <a href="#how" data-ru="Как работает" data-en="How it works">Как работает</a>
+    </nav>
+
+    <nav class="footer__col">
+      <h4 data-ru="Компания" data-en="Company">Компания</h4>
+      <a href="#" data-ru="О нас" data-en="About">О нас</a>
+      <a href="#" data-ru="Блог" data-en="Blog">Блог</a>
+      <a href="#" data-ru="Вакансии" data-en="Careers">Вакансии</a>
+      <a href="#" data-ru="Партнёрам" data-en="Partners">Партнёрам</a>
+    </nav>
+
+    <nav class="footer__col">
+      <h4 data-ru="Связаться" data-en="Contact">Связаться</h4>
+      <a href="mailto:hello@agentlocal.ai">hello@agentlocal.ai</a>
+      <a href="https://t.me/agentlocal" target="_blank" rel="noopener">Telegram</a>
+      <a href="#contact" data-ru="Получить демо" data-en="Get Demo">Получить демо</a>
+    </nav>
+  </div>
+
+  <div class="container footer__bottom">
+    <span>© <span id="year">2026</span> AgentLocal</span>
+    <span><a href="#" data-ru="Политика конфиденциальности" data-en="Privacy Policy">Политика конфиденциальности</a></span>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

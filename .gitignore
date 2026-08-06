@@ -1,0 +1,7 @@
+# Сборка одного файла — генерируется build.ps1
+dist/
+
+# Системное
+Thumbs.db
+desktop.ini
+.DS_Store
