@@ -334,12 +334,12 @@
       </div>
 
       <form class="lead" id="demo-form" novalidate>
-        <!-- Web3Forms: ключ выдаётся на web3forms.com по вашей почте -->
-        <input type="hidden" name="access_key" value="ЗАМЕНИТЕ-НА-ACCESS-KEY">
-        <input type="hidden" name="subject" value="Заявка на демо — AgentLocal">
-        <input type="hidden" name="from_name" value="Лендинг AgentLocal">
-        <!-- ловушка для спам-ботов: люди это поле не видят -->
-        <input type="checkbox" name="botcheck" class="lead__honeypot" tabindex="-1" autocomplete="off">
+        <!-- Куда уходят заявки — задаётся в script.js, константа FORM_TARGET -->
+        <input type="hidden" name="_subject" value="Заявка на демо — AgentLocal">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_captcha" value="false">
+        <!-- ловушка для спам-ботов: люди это поле не видят и не заполняют -->
+        <input type="text" name="_honey" class="lead__honeypot" tabindex="-1" autocomplete="off" aria-hidden="true">
 
         <div class="lead__row">
           <label class="field">

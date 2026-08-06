@@ -16,7 +16,7 @@
       sending: 'Отправляем…',
       ok: 'Заявка отправлена. Свяжемся в течение рабочего дня.',
       fail: 'Не удалось отправить. Напишите нам в Telegram — ответим быстрее.',
-      notConfigured: 'Форма пока не подключена: в коде не указан access key Web3Forms.'
+      notConfigured: 'Форма пока не подключена: в script.js не указана почта для заявок.'
     },
     en: {
       emptyName: 'Tell us what to call you.',
@@ -25,7 +25,7 @@
       sending: 'Sending…',
       ok: 'Request sent. We’ll be in touch within one business day.',
       fail: 'Couldn’t send it. Message us on Telegram — we’ll reply faster.',
-      notConfigured: 'The form isn’t connected yet: no Web3Forms access key in the code.'
+      notConfigured: 'The form isn’t connected yet: no destination email set in script.js.'
     }
   };
 
@@ -113,9 +113,14 @@
     revealables.forEach(function (el) { el.classList.add('is-visible'); });
   }
 
-  /* ─── 5. Demo form → Web3Forms ─── */
-  const ENDPOINT = 'https://api.web3forms.com/submit';
-  const KEY_PLACEHOLDER = 'ЗАМЕНИТЕ-НА-ACCESS-KEY';
+  /* ─── 5. Demo form → FormSubmit ─── */
+
+  // Куда приходят заявки. Здесь либо почта, либо анонимный алиас FormSubmit
+  // (выдаётся письмом после первой заявки — с ним почта не видна в коде сайта).
+  const FORM_TARGET = 'mehron307@gmail.com';
+
+  const TARGET_PLACEHOLDER = 'ЗАМЕНИТЕ-НА-ПОЧТУ';
+  const ENDPOINT = 'https://formsubmit.co/ajax/' + encodeURIComponent(FORM_TARGET);
 
   const form = document.getElementById('demo-form');
   const note = document.getElementById('form-note');
@@ -139,7 +144,9 @@
     const t = NOTES[currentLang];
 
     // спам-ловушка: заполнить её может только бот
-    if (form.elements.botcheck.checked) return;
+    if (form.elements._honey.value) return;
+
+    if (FORM_TARGET === TARGET_PLACEHOLDER) return say('error', t.notConfigured);
 
     const name = fieldName.value.trim();
     const phone = fieldPhone.value.trim();
@@ -153,11 +160,6 @@
 
     const payload = Object.fromEntries(new FormData(form).entries());
 
-    if (!payload.access_key || payload.access_key === KEY_PLACEHOLDER) {
-      say('error', t.notConfigured);
-      return;
-    }
-
     form.classList.add('is-sending');
     say('plain', t.sending);
 
@@ -168,7 +170,8 @@
     })
       .then(function (res) { return res.json(); })
       .then(function (data) {
-        if (!data.success) throw new Error(data.message || 'rejected');
+        // FormSubmit отдаёт success строкой — "false" тоже truthy, поэтому сравниваем явно
+        if (String(data.success) !== 'true') throw new Error(data.message || 'rejected');
         say('ok', t.ok);
         form.reset();
       })
