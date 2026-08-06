@@ -406,8 +406,8 @@ input{font:inherit}
 .cta{padding:90px 0 100px}
 .cta__card{
   position:relative;overflow:hidden;
-  display:grid;grid-template-columns:1.1fr .9fr;gap:44px;align-items:center;
-  padding:56px;border-radius:32px;
+  display:grid;grid-template-columns:1fr 1.05fr;gap:48px;align-items:start;
+  padding:52px;border-radius:32px;
   background:linear-gradient(135deg,#151a2e,#1c1740 55%,#123244);
   color:#fff;box-shadow:var(--shadow-lg);
 }
@@ -419,18 +419,83 @@ input{font:inherit}
 .cta__card h2{font-size:clamp(23px,2.6vw,33px);font-weight:700;text-wrap:balance}
 .cta__card p{margin-top:14px;color:rgba(255,255,255,.72);font-size:16px;max-width:42ch}
 
-.cta__form{display:flex;gap:10px;flex-wrap:wrap}
-.cta__form input{
-  flex:1;min-width:200px;padding:15px 20px;border-radius:100px;
-  border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.08);color:#fff;
-  outline:none;transition:.2s;font-size:15px;
+.cta__perks{display:flex;flex-direction:column;gap:11px;margin-top:26px}
+.cta__perks li{position:relative;padding-left:27px;font-size:14.5px;color:rgba(255,255,255,.82)}
+.cta__perks li::before{
+  content:"✓";position:absolute;left:0;top:1px;
+  width:19px;height:19px;display:grid;place-items:center;border-radius:50%;
+  font-size:10px;font-weight:800;background:rgba(255,255,255,.14);color:#a5f3d0;
 }
-.cta__form input::placeholder{color:rgba(255,255,255,.45)}
-.cta__form input:focus{border-color:rgba(255,255,255,.5);background:rgba(255,255,255,.13)}
-.cta__form input.is-error{border-color:#f87171;background:rgba(248,113,113,.12)}
-.cta__note{flex-basis:100%;margin:2px 0 0;padding-left:20px;font-size:13.5px;min-height:20px;color:rgba(255,255,255,.6)}
-.cta__note.is-ok{color:#6ee7b7}
-.cta__note.is-error{color:#fca5a5}
+
+/* ─── Lead form ───────────────────────── */
+.lead{display:flex;flex-direction:column;gap:14px}
+.lead__row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.lead__honeypot{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+
+.field{display:flex;flex-direction:column;gap:7px}
+.field > span{font-size:12.5px;font-weight:600;color:rgba(255,255,255,.62);letter-spacing:.01em}
+.field input,.field select,.field textarea{
+  width:100%;padding:13px 16px;border-radius:13px;
+  border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.08);color:#fff;
+  outline:none;transition:border-color .2s, background .2s;font-size:15px;font-family:inherit;
+}
+.field textarea{resize:vertical;min-height:72px;line-height:1.5}
+.field input::placeholder,.field textarea::placeholder{color:rgba(255,255,255,.38)}
+.field input:focus,.field select:focus,.field textarea:focus{
+  border-color:rgba(255,255,255,.52);background:rgba(255,255,255,.14);
+}
+.field input.is-error,.field textarea.is-error{border-color:#f87171;background:rgba(248,113,113,.14)}
+/* нативный список опций рисуется системой — на тёмном фоне ему нужен свой цвет */
+.field select{appearance:none;-webkit-appearance:none;cursor:pointer;
+  background-image:url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8' fill='none' stroke='%23ffffff' stroke-opacity='.6' stroke-width='1.6'%3E%3Cpath d='M1 1.5 6 6.5 11 1.5'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 16px center;background-size:11px;padding-right:40px}
+.field select option{background:#1b2036;color:#fff}
+
+.consent{display:flex;align-items:flex-start;gap:10px;cursor:pointer;font-size:13px;color:rgba(255,255,255,.6)}
+.consent input{
+  appearance:none;-webkit-appearance:none;flex:none;
+  width:18px;height:18px;margin-top:1px;border-radius:6px;cursor:pointer;
+  border:1px solid rgba(255,255,255,.28);background:rgba(255,255,255,.08);transition:.2s;
+}
+.consent input:checked{background:var(--accent-2);border-color:var(--accent-2)}
+.consent input:checked::after{content:"✓";display:grid;place-items:center;height:100%;font-size:11px;font-weight:800;color:#08222b}
+.consent input.is-error{border-color:#f87171}
+
+.lead button[type="submit"]{margin-top:4px}
+.lead.is-sending button[type="submit"]{opacity:.6;pointer-events:none}
+
+.lead__note{margin:0;font-size:13.5px;min-height:20px;color:rgba(255,255,255,.6);text-align:center}
+.lead__note.is-ok{color:#6ee7b7}
+.lead__note.is-error{color:#fca5a5}
+
+/* ─── Contacts ────────────────────────── */
+.contact{
+  display:flex;flex-direction:column;
+  background:#fff;border:1px solid var(--line);border-radius:var(--radius);
+  padding:26px;box-shadow:var(--shadow);
+  transition:transform .3s var(--ease), box-shadow .3s var(--ease), border-color .3s;
+}
+.contact:hover{transform:translateY(-5px);box-shadow:var(--shadow-lg);border-color:#d7d9e6}
+.contact__icon{
+  width:44px;height:44px;display:grid;place-items:center;border-radius:14px;margin-bottom:16px;
+  background:linear-gradient(135deg,#2aabee,#229ed9);color:#fff;
+  box-shadow:0 10px 22px -10px rgba(34,158,217,.9);
+}
+.contact h3{font-size:17px;margin-bottom:9px}
+.contact p{font-size:14.5px;color:var(--ink-2);flex:1}
+.contact__handle{
+  margin-top:16px;font-size:14px;font-weight:700;color:var(--accent);
+  display:inline-flex;align-items:center;gap:6px;
+}
+.contact__handle::after{content:"→";transition:transform .25s var(--ease)}
+.contact:hover .contact__handle::after{transform:translateX(4px)}
+
+.contact-strip{
+  display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:14px;
+  margin-top:34px;font-size:14.5px;color:var(--ink-3);
+}
+.contact-strip a{color:var(--ink-2);font-weight:600;transition:color .2s}
+.contact-strip a:hover{color:var(--accent)}
 
 /* ─── Footer ──────────────────────────── */
 .footer{background:var(--bg-soft);border-top:1px solid var(--line);padding:64px 0 28px}
@@ -451,7 +516,7 @@ input{font:inherit}
 a:focus-visible,button:focus-visible,input:focus-visible{
   outline:2px solid var(--accent);outline-offset:3px;border-radius:6px;
 }
-.cta__form input:focus-visible{outline-color:#fff;outline-offset:2px}
+.lead input:focus-visible,.lead select:focus-visible,.lead textarea:focus-visible{outline-color:#fff;outline-offset:2px}
 
 /* ─── Reveal on scroll ────────────────── */
 .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s var(--ease), transform .7s var(--ease)}
@@ -493,6 +558,10 @@ a:focus-visible,button:focus-visible,input:focus-visible{
   .plan--featured{order:-1}
   .cta__card{grid-template-columns:1fr;padding:40px 28px}
   .section{padding:70px 0}
+}
+
+@media (max-width:640px){
+  .lead__row{grid-template-columns:1fr}
 }
 
 @media (max-width:560px){

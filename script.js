@@ -10,14 +10,22 @@
 
   const NOTES = {
     ru: {
-      empty: 'Введите e-mail, чтобы мы могли связаться.',
-      invalid: 'Похоже, в адресе опечатка. Проверьте, пожалуйста.',
-      ok: 'Спасибо! Свяжемся с вами в течение рабочего дня.'
+      emptyName: 'Напишите, как к вам обращаться.',
+      badPhone: 'Проверьте номер телефона — кажется, он неполный.',
+      consent: 'Отметьте согласие на обработку данных.',
+      sending: 'Отправляем…',
+      ok: 'Заявка отправлена. Свяжемся в течение рабочего дня.',
+      fail: 'Не удалось отправить. Напишите нам в Telegram — ответим быстрее.',
+      notConfigured: 'Форма пока не подключена: в коде не указан access key Web3Forms.'
     },
     en: {
-      empty: 'Enter your email so we can get in touch.',
-      invalid: 'That address looks like a typo. Please check it.',
-      ok: 'Thanks! We’ll get back to you within one business day.'
+      emptyName: 'Tell us what to call you.',
+      badPhone: 'Please check the phone number — it looks incomplete.',
+      consent: 'Please agree to the processing of your data.',
+      sending: 'Sending…',
+      ok: 'Request sent. We’ll be in touch within one business day.',
+      fail: 'Couldn’t send it. Message us on Telegram — we’ll reply faster.',
+      notConfigured: 'The form isn’t connected yet: no Web3Forms access key in the code.'
     }
   };
 
@@ -105,34 +113,72 @@
     revealables.forEach(function (el) { el.classList.add('is-visible'); });
   }
 
-  /* ─── 5. Demo form ─── */
+  /* ─── 5. Demo form → Web3Forms ─── */
+  const ENDPOINT = 'https://api.web3forms.com/submit';
+  const KEY_PLACEHOLDER = 'ЗАМЕНИТЕ-НА-ACCESS-KEY';
+
   const form = document.getElementById('demo-form');
-  const email = document.getElementById('demo-email');
   const note = document.getElementById('form-note');
-  const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i;
+  const fieldName = document.getElementById('lead-name');
+  const fieldPhone = document.getElementById('lead-phone');
+  const fieldConsent = document.getElementById('lead-consent');
 
   function say(kind, text) {
     note.textContent = text;
-    note.className = 'cta__note ' + (kind === 'ok' ? 'is-ok' : 'is-error');
-    email.classList.toggle('is-error', kind !== 'ok');
+    note.className = 'lead__note' + (kind === 'plain' ? '' : kind === 'ok' ? ' is-ok' : ' is-error');
+  }
+
+  function fail(field, text) {
+    field.classList.add('is-error');
+    field.focus();
+    say('error', text);
   }
 
   form.addEventListener('submit', function (e) {
     e.preventDefault();
-    const value = email.value.trim();
     const t = NOTES[currentLang];
 
-    if (!value) return say('error', t.empty);
-    if (!EMAIL_RE.test(value)) return say('error', t.invalid);
+    // спам-ловушка: заполнить её может только бот
+    if (form.elements.botcheck.checked) return;
 
-    say('ok', t.ok);
-    form.reset();
-    // TODO: подключить реальный эндпоинт — fetch('/api/lead', { method: 'POST', body: ... })
+    const name = fieldName.value.trim();
+    const phone = fieldPhone.value.trim();
+
+    if (name.length < 2) return fail(fieldName, t.emptyName);
+    if (phone.replace(/\D/g, '').length < 10) return fail(fieldPhone, t.badPhone);
+    if (!fieldConsent.checked) {
+      fieldConsent.classList.add('is-error');
+      return say('error', t.consent);
+    }
+
+    const payload = Object.fromEntries(new FormData(form).entries());
+
+    if (!payload.access_key || payload.access_key === KEY_PLACEHOLDER) {
+      say('error', t.notConfigured);
+      return;
+    }
+
+    form.classList.add('is-sending');
+    say('plain', t.sending);
+
+    fetch(ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify(payload)
+    })
+      .then(function (res) { return res.json(); })
+      .then(function (data) {
+        if (!data.success) throw new Error(data.message || 'rejected');
+        say('ok', t.ok);
+        form.reset();
+      })
+      .catch(function () { say('error', t.fail); })
+      .then(function () { form.classList.remove('is-sending'); });
   });
 
-  email.addEventListener('input', function () {
-    email.classList.remove('is-error');
-    note.textContent = '';
+  form.addEventListener('input', function (e) {
+    e.target.classList.remove('is-error');
+    if (note.textContent) say('plain', '');
   });
 
   /* ─── 6. Footer year ─── */

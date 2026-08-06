@@ -26,7 +26,7 @@
       <a href="#features" data-ru="Возможности" data-en="Features">Возможности</a>
       <a href="#how" data-ru="Как работает" data-en="How it works">Как работает</a>
       <a href="#pricing" data-ru="Тарифы" data-en="Pricing">Тарифы</a>
-      <a href="#contact" data-ru="Контакты" data-en="Contact">Контакты</a>
+      <a href="#contacts" data-ru="Контакты" data-en="Contact">Контакты</a>
     </nav>
 
     <div class="header__actions">
@@ -319,20 +319,125 @@
   </div>
 </section>
 
-<!-- ═══════════ CTA / CONTACT ═══════════ -->
+<!-- ═══════════ DEMO FORM ═══════════ -->
 <section class="cta" id="contact">
   <div class="container">
     <div class="cta__card reveal">
-      <div>
+      <div class="cta__intro">
         <h2 data-ru="Покажем агента на ваших задачах" data-en="See the agent on your own cases">Покажем агента на ваших задачах</h2>
-        <p data-ru="Оставьте почту — свяжемся в течение рабочего дня и настроим демо под вашу нишу." data-en="Leave your email — we’ll get back within one business day and set up a demo for your niche.">Оставьте почту — свяжемся в течение рабочего дня и настроим демо под вашу нишу.</p>
+        <p data-ru="Оставьте заявку — свяжемся в течение рабочего дня, разберём ваши сценарии и запустим демо на вашей нише." data-en="Leave a request — we’ll get back within one business day, walk through your scenarios and launch a demo for your niche.">Оставьте заявку — свяжемся в течение рабочего дня, разберём ваши сценарии и запустим демо на вашей нише.</p>
+        <ul class="cta__perks">
+          <li data-ru="Демо на ваших услугах и прайсе" data-en="Demo built on your services and prices">Демо на ваших услугах и прайсе</li>
+          <li data-ru="14 дней бесплатно, без карты" data-en="14 days free, no card required">14 дней бесплатно, без карты</li>
+          <li data-ru="Настройка за наш счёт" data-en="Setup on us">Настройка за наш счёт</li>
+        </ul>
       </div>
-      <form class="cta__form" id="demo-form" novalidate>
-        <input type="email" id="demo-email" required
-               data-ru-ph="Ваш e-mail" data-en-ph="Your email" placeholder="Ваш e-mail" aria-label="E-mail">
-        <button type="submit" class="btn btn--primary" data-ru="Записаться на демо" data-en="Book a demo">Записаться на демо</button>
-        <p class="cta__note" id="form-note" role="status"></p>
+
+      <form class="lead" id="demo-form" novalidate>
+        <!-- Web3Forms: ключ выдаётся на web3forms.com по вашей почте -->
+        <input type="hidden" name="access_key" value="ЗАМЕНИТЕ-НА-ACCESS-KEY">
+        <input type="hidden" name="subject" value="Заявка на демо — AgentLocal">
+        <input type="hidden" name="from_name" value="Лендинг AgentLocal">
+        <!-- ловушка для спам-ботов: люди это поле не видят -->
+        <input type="checkbox" name="botcheck" class="lead__honeypot" tabindex="-1" autocomplete="off">
+
+        <div class="lead__row">
+          <label class="field">
+            <span data-ru="Как вас зовут" data-en="Your name">Как вас зовут</span>
+            <input type="text" name="name" id="lead-name" required autocomplete="name"
+                   data-ru-ph="Иван" data-en-ph="John" placeholder="Иван">
+          </label>
+          <label class="field">
+            <span data-ru="Телефон" data-en="Phone">Телефон</span>
+            <input type="tel" name="phone" id="lead-phone" required autocomplete="tel"
+                   data-ru-ph="+7 900 000-00-00" data-en-ph="+1 555 000-0000" placeholder="+7 900 000-00-00">
+          </label>
+        </div>
+
+        <div class="lead__row">
+          <label class="field">
+            <span data-ru="Telegram — необязательно" data-en="Telegram — optional">Telegram — необязательно</span>
+            <input type="text" name="telegram" id="lead-telegram" autocomplete="off"
+                   data-ru-ph="@username" data-en-ph="@username" placeholder="@username">
+          </label>
+          <label class="field">
+            <span data-ru="Сфера бизнеса" data-en="Type of business">Сфера бизнеса</span>
+            <select name="business" id="lead-business">
+              <option value="Салон или барбершоп" data-ru="Салон или барбершоп" data-en="Salon or barbershop">Салон или барбершоп</option>
+              <option value="Кафе или ресторан" data-ru="Кафе или ресторан" data-en="Café or restaurant">Кафе или ресторан</option>
+              <option value="Автосервис" data-ru="Автосервис" data-en="Auto service">Автосервис</option>
+              <option value="Клиника или стоматология" data-ru="Клиника или стоматология" data-en="Clinic or dental">Клиника или стоматология</option>
+              <option value="Другое" data-ru="Другое" data-en="Other">Другое</option>
+            </select>
+          </label>
+        </div>
+
+        <label class="field">
+          <span data-ru="Что хотите поручить агенту — необязательно" data-en="What should the agent handle — optional">Что хотите поручить агенту — необязательно</span>
+          <textarea name="message" id="lead-message" rows="3"
+                    data-ru-ph="Например: принимать звонки вечером и в выходные" data-en-ph="For example: answer calls in the evening and on weekends"
+                    placeholder="Например: принимать звонки вечером и в выходные"></textarea>
+        </label>
+
+        <label class="consent">
+          <input type="checkbox" name="consent" id="lead-consent" required value="Согласие получено">
+          <span data-ru="Согласен на обработку персональных данных" data-en="I agree to the processing of my personal data">Согласен на обработку персональных данных</span>
+        </label>
+
+        <button type="submit" class="btn btn--primary btn--block" id="lead-submit">
+          <span data-ru="Записаться на демо" data-en="Book a demo">Записаться на демо</span>
+        </button>
+
+        <p class="lead__note" id="form-note" role="status" aria-live="polite"></p>
       </form>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ CONTACTS ═══════════ -->
+<section class="section section--alt" id="contacts">
+  <div class="container">
+    <div class="section__head reveal">
+      <span class="eyebrow"><i>✶</i><span data-ru="Контакты" data-en="Contact">Контакты</span></span>
+      <h2 data-ru="Не любите формы — напишите напрямую" data-en="Not a fan of forms? Write to us directly">Не любите формы — напишите напрямую</h2>
+      <p data-ru="Отвечаем в Telegram обычно за несколько минут в рабочее время" data-en="We usually reply on Telegram within minutes during business hours">Отвечаем в Telegram обычно за несколько минут в рабочее время</p>
+    </div>
+
+    <div class="grid grid--3">
+      <a class="contact reveal" href="https://t.me/agentlocal_sales" target="_blank" rel="noopener">
+        <span class="contact__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M21.9 4.3 18.6 20c-.2 1.1-.9 1.4-1.8.9l-5-3.7-2.4 2.3c-.3.3-.5.5-1 .5l.4-5.1L18.1 6c.4-.4-.1-.6-.6-.2L6.1 12.9l-5-1.6c-1.1-.3-1.1-1 .2-1.5l19.5-7.5c.9-.3 1.7.2 1.4 1.6z"/></svg>
+        </span>
+        <h3 data-ru="Отдел продаж" data-en="Sales">Отдел продаж</h3>
+        <p data-ru="Подключение, тарифы, демо и расчёт под вашу точку" data-en="Onboarding, pricing, demo and a quote for your location">Подключение, тарифы, демо и расчёт под вашу точку</p>
+        <span class="contact__handle">@agentlocal_sales</span>
+      </a>
+
+      <a class="contact reveal" href="https://t.me/agentlocal_support" target="_blank" rel="noopener">
+        <span class="contact__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M21.9 4.3 18.6 20c-.2 1.1-.9 1.4-1.8.9l-5-3.7-2.4 2.3c-.3.3-.5.5-1 .5l.4-5.1L18.1 6c.4-.4-.1-.6-.6-.2L6.1 12.9l-5-1.6c-1.1-.3-1.1-1 .2-1.5l19.5-7.5c.9-.3 1.7.2 1.4 1.6z"/></svg>
+        </span>
+        <h3 data-ru="Поддержка" data-en="Support">Поддержка</h3>
+        <p data-ru="Вопросы по работе агента, интеграциям и настройкам" data-en="Questions about the agent, integrations and settings">Вопросы по работе агента, интеграциям и настройкам</p>
+        <span class="contact__handle">@agentlocal_support</span>
+      </a>
+
+      <a class="contact reveal" href="https://t.me/agentlocal_ceo" target="_blank" rel="noopener">
+        <span class="contact__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M21.9 4.3 18.6 20c-.2 1.1-.9 1.4-1.8.9l-5-3.7-2.4 2.3c-.3.3-.5.5-1 .5l.4-5.1L18.1 6c.4-.4-.1-.6-.6-.2L6.1 12.9l-5-1.6c-1.1-.3-1.1-1 .2-1.5l19.5-7.5c.9-.3 1.7.2 1.4 1.6z"/></svg>
+        </span>
+        <h3 data-ru="Партнёрство" data-en="Partnerships">Партнёрство</h3>
+        <p data-ru="Сети, франшизы, интеграторы и всё нестандартное" data-en="Chains, franchises, integrators and anything non-standard">Сети, франшизы, интеграторы и всё нестандартное</p>
+        <span class="contact__handle">@agentlocal_ceo</span>
+      </a>
+    </div>
+
+    <div class="contact-strip reveal">
+      <a href="mailto:hello@agentlocal.ai">hello@agentlocal.ai</a>
+      <span aria-hidden="true">·</span>
+      <a href="https://t.me/agentlocal" target="_blank" rel="noopener" data-ru="Канал с кейсами" data-en="Channel with case studies">Канал с кейсами</a>
+      <span aria-hidden="true">·</span>
+      <span data-ru="Пн–Пт, 10:00–19:00 МСК" data-en="Mon–Fri, 10:00–19:00 MSK">Пн–Пт, 10:00–19:00 МСК</span>
     </div>
   </div>
 </section>
@@ -369,7 +474,9 @@
     <nav class="footer__col">
       <h4 data-ru="Связаться" data-en="Contact">Связаться</h4>
       <a href="mailto:hello@agentlocal.ai">hello@agentlocal.ai</a>
-      <a href="https://t.me/agentlocal" target="_blank" rel="noopener">Telegram</a>
+      <a href="https://t.me/agentlocal_sales" target="_blank" rel="noopener">@agentlocal_sales</a>
+      <a href="https://t.me/agentlocal_support" target="_blank" rel="noopener">@agentlocal_support</a>
+      <a href="https://t.me/agentlocal_ceo" target="_blank" rel="noopener">@agentlocal_ceo</a>
       <a href="#contact" data-ru="Получить демо" data-en="Get Demo">Получить демо</a>
     </nav>
   </div>
