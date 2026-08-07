@@ -175,7 +175,12 @@
         say('ok', t.ok);
         form.reset();
       })
-      .catch(function () { say('error', t.fail); })
+      .catch(function (err) {
+        // Посетителю показываем общее сообщение, а настоящую причину пишем в консоль:
+        // чаще всего это «This form needs Activation» — значит, не нажата ссылка в письме.
+        if (window.console) console.warn('AgentLocal form:', (err && err.message) || err);
+        say('error', t.fail);
+      })
       .then(function () { form.classList.remove('is-sending'); });
   });
 
