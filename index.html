@@ -325,7 +325,7 @@
     <div class="cta__card reveal">
       <div class="cta__intro">
         <h2 data-ru="Покажем агента на ваших задачах" data-en="See the agent on your own cases">Покажем агента на ваших задачах</h2>
-        <p data-ru="Оставьте заявку — свяжемся в течение рабочего дня, разберём ваши сценарии и запустим демо на вашей нише." data-en="Leave a request — we’ll get back within one business day, walk through your scenarios and launch a demo for your niche.">Оставьте заявку — свяжемся в течение рабочего дня, разберём ваши сценарии и запустим демо на вашей нише.</p>
+        <p data-ru="Заполните — и заявка откроется готовым сообщением в Telegram, останется нажать «Отправить». Ответим в рабочее время, разберём ваши сценарии и запустим демо." data-en="Fill it in and the request opens as a ready message in Telegram — just press “Send”. We reply during business hours, go through your scenarios and launch a demo.">Заполните — и заявка откроется готовым сообщением в Telegram, останется нажать «Отправить». Ответим в рабочее время, разберём ваши сценарии и запустим демо.</p>
         <ul class="cta__perks">
           <li data-ru="Демо на ваших услугах и прайсе" data-en="Demo built on your services and prices">Демо на ваших услугах и прайсе</li>
           <li data-ru="14 дней бесплатно, без карты" data-en="14 days free, no card required">14 дней бесплатно, без карты</li>
@@ -334,13 +334,7 @@
       </div>
 
       <form class="lead" id="demo-form" novalidate>
-        <!-- Куда уходят заявки — задаётся в script.js, константа FORM_TARGET -->
-        <input type="hidden" name="_subject" value="Заявка на демо — AgentLocal">
-        <input type="hidden" name="_template" value="table">
-        <input type="hidden" name="_captcha" value="false">
-        <!-- ловушка для спам-ботов: люди это поле не видят и не заполняют -->
-        <input type="text" name="_honey" class="lead__honeypot" tabindex="-1" autocomplete="off" aria-hidden="true">
-
+        <!-- Заявка уходит в Telegram. Получатель — константа TELEGRAM_TARGET в script.js -->
         <div class="lead__row">
           <label class="field">
             <span data-ru="Как вас зовут" data-en="Your name">Как вас зовут</span>
@@ -379,13 +373,8 @@
                     placeholder="Например: принимать звонки вечером и в выходные"></textarea>
         </label>
 
-        <label class="consent">
-          <input type="checkbox" name="consent" id="lead-consent" required value="Согласие получено">
-          <span data-ru="Согласен на обработку персональных данных" data-en="I agree to the processing of my personal data">Согласен на обработку персональных данных</span>
-        </label>
-
         <button type="submit" class="btn btn--primary btn--block" id="lead-submit">
-          <span data-ru="Записаться на демо" data-en="Book a demo">Записаться на демо</span>
+          <span data-ru="Отправить заявку в Telegram" data-en="Send the request via Telegram">Отправить заявку в Telegram</span>
         </button>
 
         <p class="lead__note" id="form-note" role="status" aria-live="polite"></p>

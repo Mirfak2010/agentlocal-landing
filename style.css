@@ -431,7 +431,6 @@ input{font:inherit}
 /* ─── Lead form ───────────────────────── */
 .lead{display:flex;flex-direction:column;gap:14px}
 .lead__row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.lead__honeypot{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
 
 .field{display:flex;flex-direction:column;gap:7px}
 .field > span{font-size:12.5px;font-weight:600;color:rgba(255,255,255,.62);letter-spacing:.01em}
@@ -452,18 +451,7 @@ input{font:inherit}
   background-repeat:no-repeat;background-position:right 16px center;background-size:11px;padding-right:40px}
 .field select option{background:#1b2036;color:#fff}
 
-.consent{display:flex;align-items:flex-start;gap:10px;cursor:pointer;font-size:13px;color:rgba(255,255,255,.6)}
-.consent input{
-  appearance:none;-webkit-appearance:none;flex:none;
-  width:18px;height:18px;margin-top:1px;border-radius:6px;cursor:pointer;
-  border:1px solid rgba(255,255,255,.28);background:rgba(255,255,255,.08);transition:.2s;
-}
-.consent input:checked{background:var(--accent-2);border-color:var(--accent-2)}
-.consent input:checked::after{content:"✓";display:grid;place-items:center;height:100%;font-size:11px;font-weight:800;color:#08222b}
-.consent input.is-error{border-color:#f87171}
-
-.lead button[type="submit"]{margin-top:4px}
-.lead.is-sending button[type="submit"]{opacity:.6;pointer-events:none}
+.lead button[type="submit"]{margin-top:6px}
 
 .lead__note{margin:0;font-size:13.5px;min-height:20px;color:rgba(255,255,255,.6);text-align:center}
 .lead__note.is-ok{color:#6ee7b7}

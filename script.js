@@ -12,20 +12,25 @@
     ru: {
       emptyName: 'Напишите, как к вам обращаться.',
       badPhone: 'Проверьте номер телефона — кажется, он неполный.',
-      consent: 'Отметьте согласие на обработку данных.',
-      sending: 'Отправляем…',
-      ok: 'Заявка отправлена. Свяжемся в течение рабочего дня.',
-      fail: 'Не удалось отправить. Напишите нам в Telegram — ответим быстрее.',
-      notConfigured: 'Форма пока не подключена: в script.js не указана почта для заявок.'
+      ok: 'Открываем Telegram — осталось нажать «Отправить».',
+      // подписи полей в готовом сообщении
+      title: 'Заявка с сайта AgentLocal',
+      fName: 'Имя',
+      fPhone: 'Телефон',
+      fTelegram: 'Telegram',
+      fBusiness: 'Сфера',
+      fMessage: 'Задача'
     },
     en: {
       emptyName: 'Tell us what to call you.',
       badPhone: 'Please check the phone number — it looks incomplete.',
-      consent: 'Please agree to the processing of your data.',
-      sending: 'Sending…',
-      ok: 'Request sent. We’ll be in touch within one business day.',
-      fail: 'Couldn’t send it. Message us on Telegram — we’ll reply faster.',
-      notConfigured: 'The form isn’t connected yet: no destination email set in script.js.'
+      ok: 'Opening Telegram — just press “Send”.',
+      title: 'Request from the AgentLocal site',
+      fName: 'Name',
+      fPhone: 'Phone',
+      fTelegram: 'Telegram',
+      fBusiness: 'Business',
+      fMessage: 'Task'
     }
   };
 
@@ -113,20 +118,19 @@
     revealables.forEach(function (el) { el.classList.add('is-visible'); });
   }
 
-  /* ─── 5. Demo form → FormSubmit ─── */
+  /* ─── 5. Demo form → Telegram ─── */
 
-  // Куда приходят заявки. Здесь либо почта, либо анонимный алиас FormSubmit
-  // (выдаётся письмом после первой заявки — с ним почта не видна в коде сайта).
-  const FORM_TARGET = 'mehron307@gmail.com';
-
-  const TARGET_PLACEHOLDER = 'ЗАМЕНИТЕ-НА-ПОЧТУ';
-  const ENDPOINT = 'https://formsubmit.co/ajax/' + encodeURIComponent(FORM_TARGET);
+  // Кому уходит заявка — без «@». Сторонних сервисов и почты в коде нет:
+  // форма собирает текст и открывает чат с уже готовым сообщением.
+  const TELEGRAM_TARGET = 'mirfak_0';
 
   const form = document.getElementById('demo-form');
   const note = document.getElementById('form-note');
   const fieldName = document.getElementById('lead-name');
   const fieldPhone = document.getElementById('lead-phone');
-  const fieldConsent = document.getElementById('lead-consent');
+  const fieldTelegram = document.getElementById('lead-telegram');
+  const fieldBusiness = document.getElementById('lead-business');
+  const fieldMessage = document.getElementById('lead-message');
 
   function say(kind, text) {
     note.textContent = text;
@@ -139,49 +143,39 @@
     say('error', text);
   }
 
+  function buildMessage(t) {
+    const lines = [t.title, ''];
+    const add = function (label, value) {
+      if (value) lines.push(label + ': ' + value);
+    };
+
+    add(t.fName, fieldName.value.trim());
+    add(t.fPhone, fieldPhone.value.trim());
+    add(t.fTelegram, fieldTelegram.value.trim());
+    add(t.fBusiness, fieldBusiness.value);
+    add(t.fMessage, fieldMessage.value.trim());
+
+    return lines.join('\n');
+  }
+
   form.addEventListener('submit', function (e) {
     e.preventDefault();
     const t = NOTES[currentLang];
-
-    // спам-ловушка: заполнить её может только бот
-    if (form.elements._honey.value) return;
-
-    if (FORM_TARGET === TARGET_PLACEHOLDER) return say('error', t.notConfigured);
 
     const name = fieldName.value.trim();
     const phone = fieldPhone.value.trim();
 
     if (name.length < 2) return fail(fieldName, t.emptyName);
     if (phone.replace(/\D/g, '').length < 10) return fail(fieldPhone, t.badPhone);
-    if (!fieldConsent.checked) {
-      fieldConsent.classList.add('is-error');
-      return say('error', t.consent);
-    }
 
-    const payload = Object.fromEntries(new FormData(form).entries());
+    const url = 'https://t.me/' + TELEGRAM_TARGET + '?text=' + encodeURIComponent(buildMessage(t));
 
-    form.classList.add('is-sending');
-    say('plain', t.sending);
+    // Вызов синхронный внутри обработчика клика, поэтому блокировщик всплывающих
+    // окон его пропускает. Если всё же не пропустил — уходим в том же окне.
+    const opened = window.open(url, '_blank', 'noopener');
+    if (!opened) window.location.href = url;
 
-    fetch(ENDPOINT, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-      body: JSON.stringify(payload)
-    })
-      .then(function (res) { return res.json(); })
-      .then(function (data) {
-        // FormSubmit отдаёт success строкой — "false" тоже truthy, поэтому сравниваем явно
-        if (String(data.success) !== 'true') throw new Error(data.message || 'rejected');
-        say('ok', t.ok);
-        form.reset();
-      })
-      .catch(function (err) {
-        // Посетителю показываем общее сообщение, а настоящую причину пишем в консоль:
-        // чаще всего это «This form needs Activation» — значит, не нажата ссылка в письме.
-        if (window.console) console.warn('AgentLocal form:', (err && err.message) || err);
-        say('error', t.fail);
-      })
-      .then(function () { form.classList.remove('is-sending'); });
+    say('ok', t.ok);
   });
 
   form.addEventListener('input', function (e) {
