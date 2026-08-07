@@ -1,13 +1,13 @@
 ﻿# Собирает single-file версию лендинга: CSS, JS и шрифты вшиваются в один HTML.
 # Запуск:  powershell -ExecutionPolicy Bypass -File build.ps1
-# Результат: dist\agentlocal.html — самодостаточный файл, работает без интернета.
+# Результат: dist\rezaru.html — самодостаточный файл, работает без интернета.
 
 $ErrorActionPreference = 'Stop'
 $ProgressPreference     = 'SilentlyContinue'
 
 $root = Split-Path -Parent $MyInvocation.MyCommand.Path
 $dist = Join-Path $root 'dist'
-$tmp  = Join-Path $env:TEMP 'agentlocal-fonts'
+$tmp  = Join-Path $env:TEMP 'rezaru-fonts'
 New-Item -ItemType Directory -Force -Path $dist, $tmp | Out-Null
 
 # Chrome UA нужен, чтобы Google Fonts отдал woff2, а не устаревший ttf
@@ -40,7 +40,7 @@ $html = [regex]::Replace($html, '\s*<link href="https://fonts\.googleapis\.com[^
 $html = $html.Replace('<link rel="stylesheet" href="style.css">', "<style>$fontCss</style>`n<style>$css</style>")
 $html = $html.Replace('<script src="script.js"></script>', "<script>$js</script>")
 
-$out = Join-Path $dist 'agentlocal.html'
+$out = Join-Path $dist 'rezaru.html'
 [IO.File]::WriteAllText($out, $html, (New-Object Text.UTF8Encoding $false))
 
 $kb = [math]::Round((Get-Item $out).Length / 1KB)

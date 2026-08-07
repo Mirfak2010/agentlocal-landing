@@ -1,11 +1,11 @@
 /* ═══════════════════════════════════════════
-   AgentLocal — landing scripts
+   Rezaru — landing scripts
    ═══════════════════════════════════════════ */
 (function () {
   'use strict';
 
   /* ─── 1. Language switcher (RU / EN) ─── */
-  const STORAGE_KEY = 'agentlocal-lang';
+  const STORAGE_KEY = 'rezaru-lang';
   const langButtons = document.querySelectorAll('.lang__btn');
 
   const NOTES = {
@@ -14,7 +14,7 @@
       badPhone: 'Проверьте номер телефона — кажется, он неполный.',
       ok: 'Открываем Telegram — осталось нажать «Отправить».',
       // подписи полей в готовом сообщении
-      title: 'Заявка с сайта AgentLocal',
+      title: 'Заявка с сайта Rezaru',
       fName: 'Имя',
       fPhone: 'Телефон',
       fTelegram: 'Telegram',
@@ -25,7 +25,7 @@
       emptyName: 'Tell us what to call you.',
       badPhone: 'Please check the phone number — it looks incomplete.',
       ok: 'Opening Telegram — just press “Send”.',
-      title: 'Request from the AgentLocal site',
+      title: 'Request from the Rezaru site',
       fName: 'Name',
       fPhone: 'Phone',
       fTelegram: 'Telegram',
