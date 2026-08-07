@@ -49,6 +49,11 @@
       el.placeholder = el.dataset[currentLang + 'Ph'];
     });
 
+    document.querySelectorAll('[data-' + currentLang + '-title]').forEach(function (el) {
+      el.title = el.dataset[currentLang + 'Title'];
+      el.setAttribute('aria-label', el.dataset[currentLang + 'Title']);
+    });
+
     document.documentElement.lang = currentLang;
     langButtons.forEach(function (btn) {
       btn.classList.toggle('is-active', btn.dataset.lang === currentLang);
@@ -66,7 +71,31 @@
   const browserIsRu = (navigator.language || '').toLowerCase().indexOf('ru') === 0;
   setLang(saved || (browserIsRu ? 'ru' : 'en'));
 
-  /* ─── 2. Sticky header ─── */
+  /* ─── 2. Theme (dark / light) ─── */
+  const THEME_KEY = 'rezaru-theme';
+  const themeToggle = document.getElementById('theme-toggle');
+
+  function setTheme(theme, remember) {
+    const value = theme === 'light' ? 'light' : 'dark';
+    document.documentElement.dataset.theme = value;
+    themeToggle.setAttribute('aria-pressed', value === 'light');
+    if (remember) {
+      try { localStorage.setItem(THEME_KEY, value); } catch (e) { /* private mode */ }
+    }
+  }
+
+  let savedTheme = null;
+  try { savedTheme = localStorage.getItem(THEME_KEY); } catch (e) { /* private mode */ }
+
+  // Первый заход — уважаем настройку системы, дальше решает выбор пользователя.
+  const prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+  setTheme(savedTheme || (prefersLight ? 'light' : 'dark'), false);
+
+  themeToggle.addEventListener('click', function () {
+    setTheme(document.documentElement.dataset.theme === 'light' ? 'dark' : 'light', true);
+  });
+
+  /* ─── 3. Sticky header ─── */
   const header = document.getElementById('header');
   const onScroll = function () {
     header.classList.toggle('is-stuck', window.scrollY > 20);
@@ -74,7 +103,7 @@
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
 
-  /* ─── 3. Mobile menu ─── */
+  /* ─── 4. Mobile menu ─── */
   const burger = document.getElementById('burger');
   const nav = document.getElementById('nav');
 
@@ -97,7 +126,7 @@
     }
   });
 
-  /* ─── 4. Reveal on scroll ─── */
+  /* ─── 5. Reveal on scroll ─── */
   const revealables = document.querySelectorAll('.reveal');
 
   if ('IntersectionObserver' in window) {
@@ -118,7 +147,7 @@
     revealables.forEach(function (el) { el.classList.add('is-visible'); });
   }
 
-  /* ─── 5. Demo form → Telegram ─── */
+  /* ─── 6. Demo form → Telegram ─── */
 
   // Кому уходит заявка — без «@». Сторонних сервисов и почты в коде нет:
   // форма собирает текст и открывает чат с уже готовым сообщением.
@@ -183,6 +212,6 @@
     if (note.textContent) say('plain', '');
   });
 
-  /* ─── 6. Footer year ─── */
+  /* ─── 7. Footer year ─── */
   document.getElementById('year').textContent = new Date().getFullYear();
 })();
