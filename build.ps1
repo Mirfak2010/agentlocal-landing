@@ -37,8 +37,9 @@ $js   = Get-Content (Join-Path $root 'script.js')  -Raw -Encoding UTF8
 # Ссылки на внешние шрифты заменяем встроенным @font-face
 $html = [regex]::Replace($html, '\s*<link rel="preconnect"[^>]*>', '')
 $html = [regex]::Replace($html, '\s*<link href="https://fonts\.googleapis\.com[^>]*>', '')
-$html = $html.Replace('<link rel="stylesheet" href="style.css">', "<style>$fontCss</style>`n<style>$css</style>")
-$html = $html.Replace('<script src="script.js"></script>', "<script>$js</script>")
+# ?v=N в адресах — защита от кеша браузера, на инлайн она влиять не должна
+$html = [regex]::Replace($html, '<link rel="stylesheet" href="style\.css[^"]*">', { "<style>$fontCss</style>`n<style>$css</style>" })
+$html = [regex]::Replace($html, '<script src="script\.js[^"]*"></script>', { "<script>$js</script>" })
 
 $out = Join-Path $dist 'rezaru.html'
 [IO.File]::WriteAllText($out, $html, (New-Object Text.UTF8Encoding $false))
